@@ -1,0 +1,50 @@
+{
+  "name": "open-editor",
+  "version": "0.0.0",
+  "description": "Open files in your editor at a specific line and column",
+  "license": "MIT",
+  "repository": "sindresorhus/open-editor",
+  "author": {
+    "name": "Sindre Sorhus",
+    "email": "sindresorhus@gmail.com",
+    "url": "sindresorhus.com"
+  },
+  "engines": {
+    "node": ">=4"
+  },
+  "scripts": {
+    "test": "xo && ava"
+  },
+  "files": [
+    "index.js"
+  ],
+  "keywords": [
+    "open",
+    "editor",
+    "launch",
+    "files",
+    "file",
+    "line",
+    "column",
+    "position",
+    "path",
+    "filepath",
+    "editors",
+    "start",
+    "app",
+    "sublime",
+    "atom",
+    "vscode",
+    "webstorm",
+    "textmate"
+  ],
+  "dependencies": {
+    "env-editor": "^0.1.0",
+    "line-column-path": "^1.0.0",
+    "opn": "^5.0.0"
+  },
+  "devDependencies": {
+    "ava": "*",
+    "xo": "*"
+  }
+}
