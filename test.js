@@ -71,3 +71,13 @@ test('editor - TextMate', t => {
 		]
 	});
 });
+
+test('editor - IntelliJ IDEA', t => {
+	t.deepEqual(m.make(fixtureFiles, {editor: 'intellij'}), {
+		bin: 'idea',
+		args: [
+			'unicorn.js:10',
+			'rainbow.js:43'
+		]
+	});
+});

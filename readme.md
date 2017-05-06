@@ -9,6 +9,7 @@ Supports any editor, but only the following editors will open at a specific line
 - Visual Studio Code
 - WebStorm*
 - TextMate*
+- IntelliJ*
 
 *\*Doesn't support column.*
 
