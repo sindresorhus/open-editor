@@ -10,6 +10,8 @@ Supports any editor, but only the following editors will open at a specific line
 - WebStorm*
 - TextMate*
 - IntelliJ IDEA*
+- Vim
+- NeoVim
 
 *\*Doesn't support column.*
 
@@ -64,9 +66,9 @@ Can be useful if you want to force a specific editor or implement your own auto-
 
 ### openEditor.make(files, [options])
 
-Same as `openEditor()`, but returns an object with the binary name and arguments.
+Same as `openEditor()`, but returns an object with the binary name, arguments and a flag indicating if the editor runs in the terminal.
 
-Example: `{bin: 'subl', args: ['foo.js:1:5']}`
+Example: `{bin: 'subl', args: ['foo.js:1:5'], isTerminalEditor: false}`
 
 Can be useful if you want to handle opening the files yourself.
 
