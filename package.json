@@ -36,10 +36,11 @@
     "atom",
     "vscode",
     "webstorm",
-    "textmate"
+    "textmate",
+    "intellij"
   ],
   "dependencies": {
-    "env-editor": "^0.1.0",
+    "env-editor": "^0.2.0",
     "line-column-path": "^1.0.0",
     "opn": "^5.0.0"
   },

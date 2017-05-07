@@ -26,7 +26,7 @@ const make = (files, opts) => {
 			continue;
 		}
 
-		if (editor.id === 'webstorm') {
+		if (['webstorm', 'intellij'].indexOf(editor.id) !== -1) {
 			args.push(lineColumnPath.stringify(parsed, {column: false}));
 			continue;
 		}
