@@ -1,6 +1,6 @@
 {
   "name": "open-editor",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "Open files in your editor at a specific line and column",
   "license": "MIT",
   "repository": "sindresorhus/open-editor",
