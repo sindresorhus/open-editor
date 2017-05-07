@@ -39,21 +39,29 @@ const make = (files, opts) => {
 			continue;
 		}
 
+		if (['vim', 'neovim'].indexOf(editor.id) !== -1) {
+			args.push(`+call cursor(${parsed.line}, ${parsed.column})`, parsed.file);
+			continue;
+		}
+
 		args.push(parsed.file);
 	}
 
 	return {
 		bin: editor.bin,
-		args
+		args,
+		isTerminalEditor: editor.isTerminalEditor
 	};
 };
 
 module.exports = (files, opts) => {
 	const result = make(files, opts);
 
+	const stdio = result.isTerminalEditor ? 'inherit' : 'ignore';
+
 	const cp = childProcess.spawn(result.bin, result.args, {
 		detached: true,
-		stdio: 'ignore'
+		stdio
 	});
 
 	// Fallback
@@ -65,7 +73,11 @@ module.exports = (files, opts) => {
 		}
 	});
 
-	cp.unref();
+	if (result.isTerminalEditor) {
+		cp.on('exit', process.exit);
+	} else {
+		cp.unref();
+	}
 };
 
 module.exports.make = make;

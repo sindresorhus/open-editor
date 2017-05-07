@@ -17,7 +17,8 @@ test('object input', t => {
 		column: 4
 	}], {editor: 'sublime'}), {
 		bin: 'subl',
-		args: fixtureFiles
+		args: fixtureFiles,
+		isTerminalEditor: false
 	});
 });
 
@@ -27,28 +28,32 @@ test('editor - generic', t => {
 		args: [
 			'unicorn.js',
 			'rainbow.js'
-		]
+		],
+		isTerminalEditor: false
 	});
 });
 
 test('editor - Sublime', t => {
 	t.deepEqual(m.make(fixtureFiles, {editor: 'sublime'}), {
 		bin: 'subl',
-		args: fixtureFiles
+		args: fixtureFiles,
+		isTerminalEditor: false
 	});
 });
 
 test('editor - Atom', t => {
 	t.deepEqual(m.make(fixtureFiles, {editor: 'atom'}), {
 		bin: 'atom',
-		args: fixtureFiles
+		args: fixtureFiles,
+		isTerminalEditor: false
 	});
 });
 
 test('editor - VS Code', t => {
 	t.deepEqual(m.make(fixtureFiles, {editor: 'vscode'}), {
 		bin: 'code',
-		args: ['--goto'].concat(fixtureFiles)
+		args: ['--goto'].concat(fixtureFiles),
+		isTerminalEditor: false
 	});
 });
 
@@ -58,7 +63,8 @@ test('editor - WebStorm', t => {
 		args: [
 			'unicorn.js:10',
 			'rainbow.js:43'
-		]
+		],
+		isTerminalEditor: false
 	});
 });
 
@@ -68,7 +74,30 @@ test('editor - TextMate', t => {
 		args: [
 			'--line', '10', 'unicorn.js',
 			'--line', '43', 'rainbow.js'
-		]
+		],
+		isTerminalEditor: false
+	});
+});
+
+test('editor - Vim', t => {
+	t.deepEqual(m.make(fixtureFiles, {editor: 'vim'}), {
+		bin: 'vim',
+		args: [
+			'+call cursor(10, 20)', 'unicorn.js',
+			'+call cursor(43, 4)', 'rainbow.js'
+		],
+		isTerminalEditor: true
+	});
+});
+
+test('editor - NeoVim', t => {
+	t.deepEqual(m.make(fixtureFiles, {editor: 'neovim'}), {
+		bin: 'nvim',
+		args: [
+			'+call cursor(10, 20)', 'unicorn.js',
+			'+call cursor(43, 4)', 'rainbow.js'
+		],
+		isTerminalEditor: true
 	});
 });
 
@@ -78,6 +107,7 @@ test('editor - IntelliJ IDEA', t => {
 		args: [
 			'unicorn.js:10',
 			'rainbow.js:43'
-		]
+		],
+		isTerminalEditor: false
 	});
 });

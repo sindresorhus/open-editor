@@ -37,10 +37,12 @@
     "vscode",
     "webstorm",
     "textmate",
+    "vim",
+    "neovim",
     "intellij"
   ],
   "dependencies": {
-    "env-editor": "^0.2.0",
+    "env-editor": "^0.3.1",
     "line-column-path": "^1.0.0",
     "opn": "^5.0.0"
   },
