@@ -8,7 +8,7 @@ Supports any editor, but only the following editors will open at a specific line
 - Atom
 - Visual Studio Code
 - WebStorm*
-- TextMate*
+- TextMate
 - Vim
 - NeoVim
 - IntelliJ IDEA*

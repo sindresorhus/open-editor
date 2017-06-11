@@ -72,8 +72,8 @@ test('editor - TextMate', t => {
 	t.deepEqual(m.make(fixtureFiles, {editor: 'textmate'}), {
 		bin: 'mate',
 		args: [
-			'--line', '10', 'unicorn.js',
-			'--line', '43', 'rainbow.js'
+			'--line', '10:20', 'unicorn.js',
+			'--line', '43:4', 'rainbow.js'
 		],
 		isTerminalEditor: false
 	});
