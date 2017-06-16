@@ -33,8 +33,7 @@ const make = (files, opts) => {
 
 		if (editor.id === 'textmate') {
 			args.push('--line', lineColumnPath.stringify(parsed, {
-				file: false,
-				column: false
+				file: false
 			}), parsed.file);
 			continue;
 		}
