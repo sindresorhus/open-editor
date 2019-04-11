@@ -71,10 +71,12 @@ test('editor - WebStorm', t => {
 test('editor - TextMate', t => {
 	t.deepEqual(m.make(fixtureFiles, {editor: 'textmate'}), {
 		bin: 'mate',
-		args: [
-			'--line', '10:20', 'unicorn.js',
-			'--line', '43:4', 'rainbow.js'
-		],
+		args: ['--line',
+			'10:20',
+			'unicorn.js',
+			'--line',
+			'43:4',
+			'rainbow.js'],
 		isTerminalEditor: false
 	});
 });
@@ -82,10 +84,10 @@ test('editor - TextMate', t => {
 test('editor - Vim', t => {
 	t.deepEqual(m.make(fixtureFiles, {editor: 'vim'}), {
 		bin: 'vim',
-		args: [
-			'+call cursor(10, 20)', 'unicorn.js',
-			'+call cursor(43, 4)', 'rainbow.js'
-		],
+		args: ['+call cursor(10, 20)',
+			'unicorn.js',
+			'+call cursor(43, 4)',
+			'rainbow.js'],
 		isTerminalEditor: true
 	});
 });
@@ -93,10 +95,10 @@ test('editor - Vim', t => {
 test('editor - NeoVim', t => {
 	t.deepEqual(m.make(fixtureFiles, {editor: 'neovim'}), {
 		bin: 'nvim',
-		args: [
-			'+call cursor(10, 20)', 'unicorn.js',
-			'+call cursor(43, 4)', 'rainbow.js'
-		],
+		args: ['+call cursor(10, 20)',
+			'unicorn.js',
+			'+call cursor(43, 4)',
+			'rainbow.js'],
 		isTerminalEditor: true
 	});
 });
@@ -104,10 +106,8 @@ test('editor - NeoVim', t => {
 test('editor - IntelliJ IDEA', t => {
 	t.deepEqual(m.make(fixtureFiles, {editor: 'intellij'}), {
 		bin: 'idea',
-		args: [
-			'unicorn.js:10',
-			'rainbow.js:43'
-		],
+		args: ['unicorn.js:10',
+			'rainbow.js:43'],
 		isTerminalEditor: false
 	});
 });
