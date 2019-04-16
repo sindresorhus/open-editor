@@ -19,7 +19,7 @@ Supports any editor, but only the following editors will open at a specific line
 ## Install
 
 ```
-$ npm install --save open-editor
+$ npm install open-editor
 ```
 
 
@@ -47,7 +47,7 @@ Open the given files in the user's editor at specific line and column if support
 
 #### files
 
-Type: `Array<string|Object>`
+Type: `Array<string | Object>`
 
 Items should be in the format `foo.js:1:5` or `{file: 'foo.js', line: 1: column: 5}`.
 
@@ -60,9 +60,9 @@ Type: `Object`
 Type: `string`<br>
 Default: [Auto-detected](https://github.com/sindresorhus/env-editor)
 
-Name, command, or binary path of the editor. Only use this option if you really have to.
+Name, command, or binary path of the editor.
 
-Can be useful if you want to force a specific editor or implement your own auto-detection.
+**Only use this option if you really have to.** Can be useful if you want to force a specific editor or implement your own auto-detection.
 
 ### openEditor.make(files, [options])
 

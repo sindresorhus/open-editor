@@ -4,14 +4,12 @@ const envEditor = require('env-editor');
 const lineColumnPath = require('line-column-path');
 const opn = require('opn');
 
-const make = (files, opts) => {
+const make = (files, options = {}) => {
 	if (!Array.isArray(files)) {
 		throw new TypeError(`Expected an \`Array\`, got ${typeof files}`);
 	}
 
-	opts = Object.assign({}, opts);
-
-	const editor = opts.editor ? envEditor.get(opts.editor) : envEditor.default();
+	const editor = options.editor ? envEditor.get(options.editor) : envEditor.default();
 	const args = [];
 
 	if (editor.id === 'vscode') {
@@ -53,29 +51,28 @@ const make = (files, opts) => {
 	};
 };
 
-module.exports = (files, opts) => {
-	const result = make(files, opts);
-
+module.exports = (files, options) => {
+	const result = make(files, options);
 	const stdio = result.isTerminalEditor ? 'inherit' : 'ignore';
 
-	const cp = childProcess.spawn(result.bin, result.args, {
+	const subProcess = childProcess.spawn(result.bin, result.args, {
 		detached: true,
 		stdio
 	});
 
 	// Fallback
-	cp.on('error', () => {
-		const result = make(files, Object.assign({}, opts, {editor: ''}));
+	subProcess.on('error', () => {
+		const result = make(files, {...options, editor: ''});
 
 		for (const file of result.args) {
-			opn(file, {wait: false});
+			opn(file);
 		}
 	});
 
 	if (result.isTerminalEditor) {
-		cp.on('exit', process.exit);
+		subProcess.on('exit', process.exit);
 	} else {
-		cp.unref();
+		subProcess.unref();
 	}
 };
 
