@@ -47,7 +47,7 @@ Open the given files in the user's editor at specific line and column if support
 
 #### files
 
-Type: `Array<string | Object>`
+Type: `Array<string | object>`
 
 Items should be in the format `foo.js:1:5` or `{file: 'foo.js', line: 1: column: 5}`.
 
@@ -68,7 +68,7 @@ Name, command, or binary path of the editor.
 
 Same as `openEditor()`, but returns an object with the binary name, arguments, and a flag indicating whether the editor runs in the terminal.
 
-Example: `{bin: 'subl', args: ['foo.js:1:5'], isTerminalEditor: false}`
+Example: `{binary: 'subl', arguments: ['foo.js:1:5'], isTerminalEditor: false}`
 
 Can be useful if you want to handle opening the files yourself.
 

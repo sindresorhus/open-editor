@@ -2,51 +2,51 @@
 const childProcess = require('child_process');
 const envEditor = require('env-editor');
 const lineColumnPath = require('line-column-path');
-const opn = require('opn');
+const open = require('open');
 
 const make = (files, options = {}) => {
 	if (!Array.isArray(files)) {
 		throw new TypeError(`Expected an \`Array\`, got ${typeof files}`);
 	}
 
-	const editor = options.editor ? envEditor.get(options.editor) : envEditor.default();
-	const args = [];
+	const editor = options.editor ? envEditor.getEditor(options.editor) : envEditor.defaultEditor();
+	const editorArguments = [];
 
 	if (editor.id === 'vscode') {
-		args.push('--goto');
+		editorArguments.push('--goto');
 	}
 
 	for (const file of files) {
 		const parsed = lineColumnPath.parse(file);
 
 		if (['sublime', 'atom', 'vscode'].indexOf(editor.id) !== -1) {
-			args.push(lineColumnPath.stringify(parsed));
+			editorArguments.push(lineColumnPath.stringify(parsed));
 			continue;
 		}
 
 		if (['webstorm', 'intellij'].indexOf(editor.id) !== -1) {
-			args.push(lineColumnPath.stringify(parsed, {column: false}));
+			editorArguments.push(lineColumnPath.stringify(parsed, {column: false}));
 			continue;
 		}
 
 		if (editor.id === 'textmate') {
-			args.push('--line', lineColumnPath.stringify(parsed, {
+			editorArguments.push('--line', lineColumnPath.stringify(parsed, {
 				file: false
 			}), parsed.file);
 			continue;
 		}
 
 		if (['vim', 'neovim'].indexOf(editor.id) !== -1) {
-			args.push(`+call cursor(${parsed.line}, ${parsed.column})`, parsed.file);
+			editorArguments.push(`+call cursor(${parsed.line}, ${parsed.column})`, parsed.file);
 			continue;
 		}
 
-		args.push(parsed.file);
+		editorArguments.push(parsed.file);
 	}
 
 	return {
-		bin: editor.bin,
-		args,
+		binary: editor.binary,
+		arguments: editorArguments,
 		isTerminalEditor: editor.isTerminalEditor
 	};
 };
@@ -65,7 +65,7 @@ module.exports = (files, options) => {
 		const result = make(files, {...options, editor: ''});
 
 		for (const file of result.args) {
-			opn(file);
+			open(file);
 		}
 	});
 
