@@ -40,12 +40,14 @@
 		"textmate",
 		"vim",
 		"neovim",
-		"intellij"
+		"intellij",
+		"emacs",
+		"nano"
 	],
 	"dependencies": {
 		"env-editor": "^0.4.0",
 		"line-column-path": "^2.0.0",
-		"open": "^6.1.0"
+		"open": "^6.2.0"
 	},
 	"devDependencies": {
 		"ava": "^1.4.1",

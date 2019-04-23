@@ -53,7 +53,7 @@ Items should be in the format `foo.js:1:5` or `{file: 'foo.js', line: 1: column:
 
 #### options
 
-Type: `Object`
+Type: `object`
 
 ##### editor
 
@@ -76,7 +76,7 @@ Can be useful if you want to handle opening the files yourself.
 ## Related
 
 - [open-editor-cli](https://github.com/sindresorhus/open-editor-cli) - CLI for this module
-- [opn](https://github.com/sindresorhus/opn) - Opens stuff like websites, files, executables
+- [open](https://github.com/sindresorhus/open) - Open stuff like URLs, files, executables
 
 
 ## License

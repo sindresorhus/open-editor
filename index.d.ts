@@ -3,7 +3,9 @@ import {PathLike} from 'line-column-path';
 declare namespace openEditor {
 	interface Options {
 		/**
-		Name, command, or binary path of the editor. Default: [Auto-detected](https://github.com/sindresorhus/env-editor).
+		Name, command, or binary path of the editor.
+
+		Default: [Auto-detected](https://github.com/sindresorhus/env-editor).
 
 		__Only use this option if you really have to.__ Can be useful if you want to force a specific editor or implement your own auto-detection.
 		*/

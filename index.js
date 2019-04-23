@@ -19,12 +19,12 @@ const make = (files, options = {}) => {
 	for (const file of files) {
 		const parsed = lineColumnPath.parse(file);
 
-		if (['sublime', 'atom', 'vscode'].indexOf(editor.id) !== -1) {
+		if (['sublime', 'atom', 'vscode'].includes(editor.id)) {
 			editorArguments.push(lineColumnPath.stringify(parsed));
 			continue;
 		}
 
-		if (['webstorm', 'intellij'].indexOf(editor.id) !== -1) {
+		if (['webstorm', 'intellij'].includes(editor.id)) {
 			editorArguments.push(lineColumnPath.stringify(parsed, {column: false}));
 			continue;
 		}
@@ -36,7 +36,7 @@ const make = (files, options = {}) => {
 			continue;
 		}
 
-		if (['vim', 'neovim'].indexOf(editor.id) !== -1) {
+		if (['vim', 'neovim'].includes(editor.id)) {
 			editorArguments.push(`+call cursor(${parsed.line}, ${parsed.column})`, parsed.file);
 			continue;
 		}
@@ -55,16 +55,19 @@ module.exports = (files, options) => {
 	const result = make(files, options);
 	const stdio = result.isTerminalEditor ? 'inherit' : 'ignore';
 
-	const subProcess = childProcess.spawn(result.bin, result.args, {
+	const subProcess = childProcess.spawn(result.bin, result.arguments, {
 		detached: true,
 		stdio
 	});
 
 	// Fallback
 	subProcess.on('error', () => {
-		const result = make(files, {...options, editor: ''});
+		const result = make(files, {
+			...options,
+			editor: ''
+		});
 
-		for (const file of result.args) {
+		for (const file of result.arguments) {
 			open(file);
 		}
 	});
