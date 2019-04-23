@@ -26,8 +26,8 @@ test('object input', t => {
 			}
 		),
 		{
-			bin: 'subl',
-			args: fixtureFiles,
+			binary: 'subl',
+			arguments: fixtureFiles,
 			isTerminalEditor: false
 		}
 	);
@@ -35,8 +35,8 @@ test('object input', t => {
 
 test('editor - generic', t => {
 	t.deepEqual(openEditor.make(fixtureFiles, {editor: 'noop'}), {
-		bin: 'noop',
-		args: [
+		binary: 'noop',
+		arguments: [
 			'unicorn.js',
 			'rainbow.js'
 		],
@@ -46,32 +46,32 @@ test('editor - generic', t => {
 
 test('editor - Sublime', t => {
 	t.deepEqual(openEditor.make(fixtureFiles, {editor: 'sublime'}), {
-		bin: 'subl',
-		args: fixtureFiles,
+		binary: 'subl',
+		arguments: fixtureFiles,
 		isTerminalEditor: false
 	});
 });
 
 test('editor - Atom', t => {
 	t.deepEqual(openEditor.make(fixtureFiles, {editor: 'atom'}), {
-		bin: 'atom',
-		args: fixtureFiles,
+		binary: 'atom',
+		arguments: fixtureFiles,
 		isTerminalEditor: false
 	});
 });
 
 test('editor - VS Code', t => {
 	t.deepEqual(openEditor.make(fixtureFiles, {editor: 'vscode'}), {
-		bin: 'code',
-		args: ['--goto'].concat(fixtureFiles),
+		binary: 'code',
+		arguments: ['--goto'].concat(fixtureFiles),
 		isTerminalEditor: false
 	});
 });
 
 test('editor - WebStorm', t => {
 	t.deepEqual(openEditor.make(fixtureFiles, {editor: 'webstorm'}), {
-		bin: 'wstorm',
-		args: [
+		binary: 'wstorm',
+		arguments: [
 			'unicorn.js:10',
 			'rainbow.js:43'
 		],
@@ -81,8 +81,8 @@ test('editor - WebStorm', t => {
 
 test('editor - TextMate', t => {
 	t.deepEqual(openEditor.make(fixtureFiles, {editor: 'textmate'}), {
-		bin: 'mate',
-		args: [
+		binary: 'mate',
+		arguments: [
 			'--line',
 			'10:20',
 			'unicorn.js',
@@ -96,8 +96,8 @@ test('editor - TextMate', t => {
 
 test('editor - Vim', t => {
 	t.deepEqual(openEditor.make(fixtureFiles, {editor: 'vim'}), {
-		bin: 'vim',
-		args: [
+		binary: 'vim',
+		arguments: [
 			'+call cursor(10, 20)',
 			'unicorn.js',
 			'+call cursor(43, 4)',
@@ -109,8 +109,8 @@ test('editor - Vim', t => {
 
 test('editor - NeoVim', t => {
 	t.deepEqual(openEditor.make(fixtureFiles, {editor: 'neovim'}), {
-		bin: 'nvim',
-		args: [
+		binary: 'nvim',
+		arguments: [
 			'+call cursor(10, 20)',
 			'unicorn.js',
 			'+call cursor(43, 4)',
@@ -122,8 +122,8 @@ test('editor - NeoVim', t => {
 
 test('editor - IntelliJ IDEA', t => {
 	t.deepEqual(openEditor.make(fixtureFiles, {editor: 'intellij'}), {
-		bin: 'idea',
-		args: [
+		binary: 'idea',
+		arguments: [
 			'unicorn.js:10',
 			'rainbow.js:43'
 		],
