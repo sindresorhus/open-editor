@@ -55,7 +55,7 @@ module.exports = (files, options) => {
 	const result = make(files, options);
 	const stdio = result.isTerminalEditor ? 'inherit' : 'ignore';
 
-	const subProcess = childProcess.spawn(result.bin, result.arguments, {
+	const subProcess = childProcess.spawn(result.binary, result.arguments, {
 		detached: true,
 		stdio
 	});
