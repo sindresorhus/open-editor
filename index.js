@@ -57,6 +57,7 @@ module.exports = (files, options) => {
 
 	const subProcess = childProcess.spawn(result.binary, result.arguments, {
 		detached: true,
+		shell: process.platform === 'win32',
 		stdio
 	});
 
