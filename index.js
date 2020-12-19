@@ -1,5 +1,5 @@
 'use strict';
-const childProcess = require('child_process');
+const execa = require('execa');
 const envEditor = require('env-editor');
 const lineColumnPath = require('line-column-path');
 const open = require('open');
@@ -54,29 +54,30 @@ const make = (files, options = {}) => {
 module.exports = (files, options) => {
 	const result = make(files, options);
 	const stdio = result.isTerminalEditor ? 'inherit' : 'ignore';
-
-	const subProcess = childProcess.spawn(result.binary, result.arguments, {
-		detached: true,
-		stdio
-	});
-
-	// Fallback
-	subProcess.on('error', () => {
-		const result = make(files, {
-			...options,
-			editor: ''
+	(async () => {
+		const subProcess = execa(result.binary, result.arguments, {
+			detached: true,
+			stdio
 		});
 
-		for (const file of result.arguments) {
-			open(file);
-		}
-	});
+		// Fallback
+		subProcess.on('error', () => {
+			const result = make(files, {
+				...options,
+				editor: ''
+			});
 
-	if (result.isTerminalEditor) {
-		subProcess.on('exit', process.exit);
-	} else {
-		subProcess.unref();
-	}
+			for (const file of result.arguments) {
+				open(file);
+			}
+		});
+
+		if (result.isTerminalEditor) {
+			subProcess.on('exit', process.exit);
+		} else {
+			subProcess.unref();
+		}
+	})();
 };
 
 module.exports.make = make;
