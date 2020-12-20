@@ -1,4 +1,4 @@
-# open-editor [![Build Status](https://travis-ci.org/sindresorhus/open-editor.svg?branch=master)](https://travis-ci.org/sindresorhus/open-editor)
+# open-editor
 
 > Open files in your editor at a specific line and column
 
@@ -15,13 +15,11 @@ Supports any editor, but only the following editors will open at a specific line
 
 *\*Doesn't support column.*
 
-
 ## Install
 
 ```
 $ npm install open-editor
 ```
-
 
 ## Usage
 
@@ -38,10 +36,9 @@ openEditor([
 ]);
 ```
 
-
 ## API
 
-### openEditor(files, [options])
+### openEditor(files, options?)
 
 Open the given files in the user's editor at specific line and column if supported by the editor. It does not wait for the editor to start or quit.
 
@@ -57,14 +54,14 @@ Type: `object`
 
 ##### editor
 
-Type: `string`<br>
+Type: `string`\
 Default: [Auto-detected](https://github.com/sindresorhus/env-editor)
 
 Name, command, or binary path of the editor.
 
 **Only use this option if you really have to.** Can be useful if you want to force a specific editor or implement your own auto-detection.
 
-### openEditor.make(files, [options])
+### openEditor.make(files, options?)
 
 Same as `openEditor()`, but returns an object with the binary name, arguments, and a flag indicating whether the editor runs in the terminal.
 
@@ -72,13 +69,7 @@ Example: `{binary: 'subl', arguments: ['foo.js:1:5'], isTerminalEditor: false}`
 
 Can be useful if you want to handle opening the files yourself.
 
-
 ## Related
 
 - [open-editor-cli](https://github.com/sindresorhus/open-editor-cli) - CLI for this module
 - [open](https://github.com/sindresorhus/open) - Open stuff like URLs, files, executables
-
-
-## License
-
-MIT © [Sindre Sorhus](https://sindresorhus.com)

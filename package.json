@@ -4,13 +4,14 @@
 	"description": "Open files in your editor at a specific line and column",
 	"license": "MIT",
 	"repository": "sindresorhus/open-editor",
+	"funding": "https://github.com/sponsors/sindresorhus",
 	"author": {
 		"name": "Sindre Sorhus",
 		"email": "sindresorhus@gmail.com",
-		"url": "sindresorhus.com"
+		"url": "https://sindresorhus.com"
 	},
 	"engines": {
-		"node": ">=8"
+		"node": ">=10"
 	},
 	"scripts": {
 		"test": "xo && ava && tsd"
@@ -45,14 +46,14 @@
 		"nano"
 	],
 	"dependencies": {
-		"env-editor": "^0.4.0",
+		"env-editor": "^0.4.1",
 		"execa": "^5.0.0",
 		"line-column-path": "^2.0.0",
-		"open": "^6.2.0"
+		"open": "^7.3.0"
 	},
 	"devDependencies": {
-		"ava": "^1.4.1",
-		"tsd": "^0.7.2",
-		"xo": "^0.24.0"
+		"ava": "^2.4.0",
+		"tsd": "^0.14.0",
+		"xo": "^0.36.1"
 	}
 }

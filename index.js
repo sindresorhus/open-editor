@@ -54,13 +54,14 @@ const make = (files, options = {}) => {
 module.exports = (files, options) => {
 	const result = make(files, options);
 	const stdio = result.isTerminalEditor ? 'inherit' : 'ignore';
-	const subProcess = execa(result.binary, result.arguments, {
+
+	const subprocess = execa(result.binary, result.arguments, {
 		detached: true,
 		stdio
 	});
 
 	// Fallback
-	subProcess.on('error', () => {
+	subprocess.on('error', () => {
 		const result = make(files, {
 			...options,
 			editor: ''
@@ -72,9 +73,9 @@ module.exports = (files, options) => {
 	});
 
 	if (result.isTerminalEditor) {
-		subProcess.on('exit', process.exit);
+		subprocess.on('exit', process.exit);
 	} else {
-		subProcess.unref();
+		subprocess.unref();
 	}
 };
 
