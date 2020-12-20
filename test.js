@@ -70,7 +70,7 @@ test('editor - VS Code', t => {
 
 test('editor - WebStorm', t => {
 	t.deepEqual(openEditor.make(fixtureFiles, {editor: 'webstorm'}), {
-		binary: 'wstorm',
+		binary: 'webstorm',
 		arguments: [
 			'unicorn.js:10',
 			'rainbow.js:43'

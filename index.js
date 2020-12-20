@@ -1,5 +1,5 @@
 'use strict';
-const childProcess = require('child_process');
+const execa = require('execa');
 const envEditor = require('env-editor');
 const lineColumnPath = require('line-column-path');
 const open = require('open');
@@ -54,8 +54,7 @@ const make = (files, options = {}) => {
 module.exports = (files, options) => {
 	const result = make(files, options);
 	const stdio = result.isTerminalEditor ? 'inherit' : 'ignore';
-
-	const subProcess = childProcess.spawn(result.binary, result.arguments, {
+	const subProcess = execa(result.binary, result.arguments, {
 		detached: true,
 		stdio
 	});

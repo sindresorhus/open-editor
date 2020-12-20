@@ -46,6 +46,7 @@
 	],
 	"dependencies": {
 		"env-editor": "^0.4.0",
+		"execa": "^5.0.0",
 		"line-column-path": "^2.0.0",
 		"open": "^6.2.0"
 	},
