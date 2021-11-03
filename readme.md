@@ -17,22 +17,25 @@ Supports any editor, but only the following editors will open at a specific line
 
 ## Install
 
-```
-$ npm install open-editor
+```sh
+npm install open-editor
 ```
 
 ## Usage
 
 ```js
-const openEditor = require('open-editor');
+import openEditor from 'open-editor';
 
 openEditor([
-	'unicorn.js:5:3',
 	{
 		file: 'readme.md',
 		line: 10,
-		column: 2
+		column: 2,
 	}
+]);
+
+openEditor([
+	'unicorn.js:5:3',
 ]);
 ```
 
@@ -57,17 +60,30 @@ Type: `object`
 Type: `string`\
 Default: [Auto-detected](https://github.com/sindresorhus/env-editor)
 
-Name, command, or binary path of the editor.
+The name, command, or binary path of the editor.
 
 **Only use this option if you really have to.** Can be useful if you want to force a specific editor or implement your own auto-detection.
 
-### openEditor.make(files, options?)
+### getEditorRunConfig(files, options?)
 
 Same as `openEditor()`, but returns an object with the binary name, arguments, and a flag indicating whether the editor runs in the terminal.
 
 Example: `{binary: 'subl', arguments: ['foo.js:1:5'], isTerminalEditor: false}`
 
 Can be useful if you want to handle opening the files yourself.
+
+```js
+import {getEditorInfo} from 'open-editor';
+
+getEditorInfo([
+	{
+		file: 'foo.js',
+		line: 1,
+		column: 5,
+	}
+]);
+//=> {binary: 'subl', arguments: ['foo.js:1:5'], isTerminalEditor: false}
+```
 
 ## Related
 

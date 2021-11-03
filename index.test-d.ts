@@ -1,48 +1,48 @@
 import {expectType} from 'tsd';
-import openEditor = require('.');
-
-const options: openEditor.Options = {};
+import openEditor, {getEditorInfo, EditorInfo} from './index.js';
 
 openEditor([
 	'unicorn.js:5:3',
 	{
 		file: 'readme.md',
 		line: 10,
-		column: 2
-	}
+		column: 2,
+	},
 ]);
+
 openEditor(
 	[
 		'unicorn.js:5:3',
 		{
 			file: 'readme.md',
 			line: 10,
-			column: 2
-		}
+			column: 2,
+		},
 	],
-	{editor: 'vi'}
+	{editor: 'vi'},
 );
 
-expectType<openEditor.EditorRunConfig>(
-	openEditor.make([
+expectType<EditorInfo>(
+	getEditorInfo([
 		'unicorn.js:5:3',
 		{
 			file: 'readme.md',
 			line: 10,
-			column: 2
-		}
-	])
+			column: 2,
+		},
+	]),
 );
-expectType<openEditor.EditorRunConfig>(
-	openEditor.make(
+
+expectType<EditorInfo>(
+	getEditorInfo(
 		[
 			'unicorn.js:5:3',
 			{
 				file: 'readme.md',
 				line: 10,
-				column: 2
-			}
+				column: 2,
+			},
 		],
-		{editor: 'vi'}
-	)
+		{editor: 'vi'},
+	),
 );

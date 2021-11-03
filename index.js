@@ -1,15 +1,15 @@
-'use strict';
-const execa = require('execa');
-const envEditor = require('env-editor');
-const lineColumnPath = require('line-column-path');
-const open = require('open');
+import process from 'node:process';
+import execa from 'execa';
+import {getEditor, defaultEditor} from 'env-editor';
+import {parseLineColumnPath, stringifyLineColumnPath} from 'line-column-path';
+import open from 'open';
 
-const make = (files, options = {}) => {
+export function getEditorInfo(files, options = {}) {
 	if (!Array.isArray(files)) {
 		throw new TypeError(`Expected an \`Array\`, got ${typeof files}`);
 	}
 
-	const editor = options.editor ? envEditor.getEditor(options.editor) : envEditor.defaultEditor();
+	const editor = options.editor ? getEditor(options.editor) : defaultEditor();
 	const editorArguments = [];
 
 	if (editor.id === 'vscode') {
@@ -17,21 +17,21 @@ const make = (files, options = {}) => {
 	}
 
 	for (const file of files) {
-		const parsed = lineColumnPath.parse(file);
+		const parsed = parseLineColumnPath(file);
 
 		if (['sublime', 'atom', 'vscode'].includes(editor.id)) {
-			editorArguments.push(lineColumnPath.stringify(parsed));
+			editorArguments.push(stringifyLineColumnPath(parsed));
 			continue;
 		}
 
 		if (['webstorm', 'intellij'].includes(editor.id)) {
-			editorArguments.push(lineColumnPath.stringify(parsed, {column: false}));
+			editorArguments.push(stringifyLineColumnPath(parsed, {column: false}));
 			continue;
 		}
 
 		if (editor.id === 'textmate') {
-			editorArguments.push('--line', lineColumnPath.stringify(parsed, {
-				file: false
+			editorArguments.push('--line', stringifyLineColumnPath(parsed, {
+				file: false,
 			}), parsed.file);
 			continue;
 		}
@@ -47,24 +47,24 @@ const make = (files, options = {}) => {
 	return {
 		binary: editor.binary,
 		arguments: editorArguments,
-		isTerminalEditor: editor.isTerminalEditor
+		isTerminalEditor: editor.isTerminalEditor,
 	};
-};
+}
 
-module.exports = (files, options) => {
-	const result = make(files, options);
+export default function openEditor(files, options) {
+	const result = getEditorInfo(files, options);
 	const stdio = result.isTerminalEditor ? 'inherit' : 'ignore';
 
 	const subprocess = execa(result.binary, result.arguments, {
 		detached: true,
-		stdio
+		stdio,
 	});
 
 	// Fallback
 	subprocess.on('error', () => {
-		const result = make(files, {
+		const result = getEditorInfo(files, {
 			...options,
-			editor: ''
+			editor: '',
 		});
 
 		for (const file of result.arguments) {
@@ -77,6 +77,4 @@ module.exports = (files, options) => {
 	} else {
 		subprocess.unref();
 	}
-};
-
-module.exports.make = make;
+}

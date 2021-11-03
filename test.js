@@ -1,86 +1,86 @@
 import test from 'ava';
-import openEditor from '.';
+import {getEditorInfo} from './index.js';
 
 const fixtureFiles = [
 	'unicorn.js:10:20',
-	'rainbow.js:43:4'
+	'rainbow.js:43:4',
 ];
 
 test('object input', t => {
 	t.deepEqual(
-		openEditor.make(
+		getEditorInfo(
 			[
 				{
 					file: 'unicorn.js',
 					line: 10,
-					column: 20
+					column: 20,
 				},
 				{
 					file: 'rainbow.js',
 					line: 43,
-					column: 4
-				}
+					column: 4,
+				},
 			],
 			{
-				editor: 'sublime'
-			}
+				editor: 'sublime',
+			},
 		),
 		{
 			binary: 'subl',
 			arguments: fixtureFiles,
-			isTerminalEditor: false
-		}
+			isTerminalEditor: false,
+		},
 	);
 });
 
 test('editor - generic', t => {
-	t.deepEqual(openEditor.make(fixtureFiles, {editor: 'noop'}), {
+	t.deepEqual(getEditorInfo(fixtureFiles, {editor: 'noop'}), {
 		binary: 'noop',
 		arguments: [
 			'unicorn.js',
-			'rainbow.js'
+			'rainbow.js',
 		],
-		isTerminalEditor: false
+		isTerminalEditor: false,
 	});
 });
 
 test('editor - Sublime', t => {
-	t.deepEqual(openEditor.make(fixtureFiles, {editor: 'sublime'}), {
+	t.deepEqual(getEditorInfo(fixtureFiles, {editor: 'sublime'}), {
 		binary: 'subl',
 		arguments: fixtureFiles,
-		isTerminalEditor: false
+		isTerminalEditor: false,
 	});
 });
 
 test('editor - Atom', t => {
-	t.deepEqual(openEditor.make(fixtureFiles, {editor: 'atom'}), {
+	t.deepEqual(getEditorInfo(fixtureFiles, {editor: 'atom'}), {
 		binary: 'atom',
 		arguments: fixtureFiles,
-		isTerminalEditor: false
+		isTerminalEditor: false,
 	});
 });
 
 test('editor - VS Code', t => {
-	t.deepEqual(openEditor.make(fixtureFiles, {editor: 'vscode'}), {
+	t.deepEqual(getEditorInfo(fixtureFiles, {editor: 'vscode'}), {
 		binary: 'code',
-		arguments: ['--goto'].concat(fixtureFiles),
-		isTerminalEditor: false
+		arguments: ['--goto', ...fixtureFiles],
+		isTerminalEditor: false,
 	});
 });
 
 test('editor - WebStorm', t => {
-	t.deepEqual(openEditor.make(fixtureFiles, {editor: 'webstorm'}), {
+	t.deepEqual(getEditorInfo(fixtureFiles, {editor: 'webstorm'}), {
 		binary: 'webstorm',
 		arguments: [
 			'unicorn.js:10',
-			'rainbow.js:43'
+			'rainbow.js:43',
 		],
-		isTerminalEditor: false
+		isTerminalEditor: false,
 	});
 });
 
 test('editor - TextMate', t => {
-	t.deepEqual(openEditor.make(fixtureFiles, {editor: 'textmate'}), {
+	t.deepEqual(getEditorInfo(fixtureFiles, {editor: 'textmate'}), {
 		binary: 'mate',
 		arguments: [
 			'--line',
@@ -88,45 +88,45 @@ test('editor - TextMate', t => {
 			'unicorn.js',
 			'--line',
 			'43:4',
-			'rainbow.js'
+			'rainbow.js',
 		],
-		isTerminalEditor: false
+		isTerminalEditor: false,
 	});
 });
 
 test('editor - Vim', t => {
-	t.deepEqual(openEditor.make(fixtureFiles, {editor: 'vim'}), {
+	t.deepEqual(getEditorInfo(fixtureFiles, {editor: 'vim'}), {
 		binary: 'vim',
 		arguments: [
 			'+call cursor(10, 20)',
 			'unicorn.js',
 			'+call cursor(43, 4)',
-			'rainbow.js'
+			'rainbow.js',
 		],
-		isTerminalEditor: true
+		isTerminalEditor: true,
 	});
 });
 
 test('editor - NeoVim', t => {
-	t.deepEqual(openEditor.make(fixtureFiles, {editor: 'neovim'}), {
+	t.deepEqual(getEditorInfo(fixtureFiles, {editor: 'neovim'}), {
 		binary: 'nvim',
 		arguments: [
 			'+call cursor(10, 20)',
 			'unicorn.js',
 			'+call cursor(43, 4)',
-			'rainbow.js'
+			'rainbow.js',
 		],
-		isTerminalEditor: true
+		isTerminalEditor: true,
 	});
 });
 
 test('editor - IntelliJ IDEA', t => {
-	t.deepEqual(openEditor.make(fixtureFiles, {editor: 'intellij'}), {
+	t.deepEqual(getEditorInfo(fixtureFiles, {editor: 'intellij'}), {
 		binary: 'idea',
 		arguments: [
 			'unicorn.js:10',
-			'rainbow.js:43'
+			'rainbow.js:43',
 		],
-		isTerminalEditor: false
+		isTerminalEditor: false,
 	});
 });
