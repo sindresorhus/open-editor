@@ -12,14 +12,14 @@ export function getEditorInfo(files, options = {}) {
 	const editor = options.editor ? getEditor(options.editor) : defaultEditor();
 	const editorArguments = [];
 
-	if (editor.id === 'vscode') {
+	if (['vscode', 'vscodium'].includes(editor.id)) {
 		editorArguments.push('--goto');
 	}
 
 	for (const file of files) {
 		const parsed = parseLineColumnPath(file);
 
-		if (['sublime', 'atom', 'vscode'].includes(editor.id)) {
+		if (['sublime', 'atom', 'vscode', 'vscodium'].includes(editor.id)) {
 			editorArguments.push(stringifyLineColumnPath(parsed));
 			continue;
 		}
