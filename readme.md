@@ -38,6 +38,11 @@ openEditor([
 openEditor([
 	'unicorn.js:5:3',
 ]);
+
+await openEditor([
+	'unicorn.js:5:3',
+], { wait: true });
+console.log('file was closed');
 ```
 
 ## API
@@ -55,6 +60,13 @@ Items should be in the format `foo.js:1:5` or `{file: 'foo.js', line: 1: column:
 #### options
 
 Type: `object`
+
+##### wait
+
+Type: `boolean`\
+Default: false
+
+Wait until the edit process is finished (editor is closed).
 
 ##### editor
 
