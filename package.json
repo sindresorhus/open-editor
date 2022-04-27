@@ -48,7 +48,7 @@
 		"nano"
 	],
 	"dependencies": {
-		"env-editor": "^1.0.0",
+		"env-editor": "^1.1.0",
 		"execa": "^5.1.1",
 		"line-column-path": "^3.0.0",
 		"open": "^8.4.0"
