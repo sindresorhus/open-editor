@@ -21,6 +21,7 @@ export function getEditorInfo(files, options = {}) {
 
 		if (['sublime', 'atom', 'vscode', 'vscodium'].includes(editor.id)) {
 			editorArguments.push(stringifyLineColumnPath(parsed));
+
 			if (options.wait) {
 				editorArguments.push('--wait');
 			}
@@ -30,6 +31,7 @@ export function getEditorInfo(files, options = {}) {
 
 		if (['webstorm', 'intellij'].includes(editor.id)) {
 			editorArguments.push(stringifyLineColumnPath(parsed, {column: false}));
+
 			if (options.wait) {
 				editorArguments.push('--wait');
 			}
@@ -45,6 +47,7 @@ export function getEditorInfo(files, options = {}) {
 				}),
 				parsed.file,
 			);
+
 			if (options.wait) {
 				editorArguments.push('-w');
 			}
@@ -57,6 +60,7 @@ export function getEditorInfo(files, options = {}) {
 				`+call cursor(${parsed.line}, ${parsed.column})`,
 				parsed.file,
 			);
+
 			continue;
 		}
 
