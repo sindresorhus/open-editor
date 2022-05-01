@@ -38,11 +38,6 @@ openEditor([
 openEditor([
 	'unicorn.js:5:3',
 ]);
-
-await openEditor([
-	'unicorn.js:5:3',
-], { wait: true });
-console.log('file was closed');
 ```
 
 ## API
@@ -66,7 +61,15 @@ Type: `object`
 Type: `boolean`\
 Default: false
 
-Wait until the edit process is finished (editor is closed).
+Wait until the editor is closed.
+
+```js
+import openEditor from 'open-editor';
+
+await openEditor(['unicorn.js:5:3'], {wait: true});
+
+console.log('File was closed');
+```
 
 ##### editor
 
