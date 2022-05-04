@@ -59,7 +59,7 @@ openEditor([
 ]);
 ```
 */
-export default function openEditor(files: readonly PathLike[], options?: Options): void|Promise<void>;
+export default function openEditor(files: readonly PathLike[], options?: Options): void | Promise<void>;
 
 /**
 Same as `openEditor()`, but returns an object with the binary name, arguments, and a flag indicating whether the editor runs in the terminal.
