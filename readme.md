@@ -44,7 +44,7 @@ openEditor([
 
 ### openEditor(files, options?)
 
-Open the given files in the user's editor at specific line and column if supported by the editor. It does not wait for the editor to start or quit.
+Open the given files in the user's editor at specific line and column if supported by the editor. It does not wait for the editor to start or quit unless you specify `wait: true` in the options.
 
 #### files
 

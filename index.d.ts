@@ -9,6 +9,13 @@ export interface Options {
 	__Only use this option if you really have to.__ Can be useful if you want to force a specific editor or implement your own auto-detection.
 	*/
 	readonly editor?: string;
+
+	/**
+	Wheather you want to wait for the editor to quit.
+
+	Default: false
+	*/
+	readonly wait?: boolean;
 }
 
 export interface EditorInfo {
@@ -33,6 +40,8 @@ Open the given files in the user's editor at specific line and column if support
 
 @param files - Items should be in the format `foo.js:1:5` or `{file: 'foo.js', line: 1: column: 5}`.
 
+@returns void or Promise<void> - If options.wait is true, a promise is returned which resolves as soon as the editor closes.
+
 @example
 ```
 import openEditor from 'open-editor';
@@ -50,7 +59,7 @@ openEditor([
 ]);
 ```
 */
-export default function openEditor(files: readonly PathLike[], options?: Options): void;
+export default function openEditor(files: readonly PathLike[], options?: Options): void|Promise<void>;
 
 /**
 Same as `openEditor()`, but returns an object with the binary name, arguments, and a flag indicating whether the editor runs in the terminal.
