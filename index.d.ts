@@ -11,7 +11,7 @@ export interface Options {
 	readonly editor?: string;
 
 	/**
-	Wheather you want to wait for the editor to quit.
+	Whether you want to wait for the editor to quit.
 
 	@default false
 	*/
@@ -40,7 +40,7 @@ Open the given files in the user's editor at specific line and column if support
 
 @param files - Items should be in the format `foo.js:1:5` or `{file: 'foo.js', line: 1: column: 5}`.
 
-@returns void or Promise<void> - If options.wait is true, a promise is returned which resolves as soon as the editor closes.
+@returns void | Promise<void> - If options.wait is true, a promise is returned which resolves as soon as the editor closes.
 
 @example
 ```
