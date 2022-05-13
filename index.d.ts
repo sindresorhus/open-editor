@@ -13,7 +13,7 @@ export interface Options {
 	/**
 	Wheather you want to wait for the editor to quit.
 
-	Default: false
+	@default false
 	*/
 	readonly wait?: boolean;
 }
