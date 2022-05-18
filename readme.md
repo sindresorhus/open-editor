@@ -59,7 +59,7 @@ Type: `object`
 ##### wait
 
 Type: `boolean`\
-Default: false
+Default: `false`
 
 Wait until the editor is closed.
 
