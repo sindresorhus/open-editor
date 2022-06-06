@@ -36,11 +36,13 @@ export interface EditorInfo {
 }
 
 /**
-Open the given files in the user's editor at specific line and column if supported by the editor. It does not wait for the editor to start or quit.
+Open the given files in the user's editor at specific line and column if supported by the editor. It does not wait for the editor to start or quit  unless you specify `wait: true` in the options.
 
 @param files - Items should be in the format `foo.js:1:5` or `{file: 'foo.js', line: 1: column: 5}`.
 
-@returns void | Promise<void> - If options.wait is true, a promise is returned which resolves as soon as the editor closes.
+@param {boolean} [options.wait=false] - Wait until the editor is closed (default: false).
+
+@returns Promise<void> - If options.wait is true, a promise is returned which resolves as soon as the editor closes.
 
 @example
 ```
@@ -57,6 +59,10 @@ openEditor([
 openEditor([
 	'unicorn.js:5:3',
 ]);
+
+await openEditor(['unicorn.js:5:3'], {wait: true});
+console.log('File was closed');
+
 ```
 */
 export default function openEditor(files: readonly PathLike[], options?: Options): void | Promise<void>;
