@@ -65,7 +65,7 @@ The name, command, or binary path of the editor.
 
 **Only use this option if you really have to.** Can be useful if you want to force a specific editor or implement your own auto-detection.
 
-### getEditorRunConfig(files, options?)
+### getEditorInfo(files, options?)
 
 Same as `openEditor()`, but returns an object with the binary name, arguments, and a flag indicating whether the editor runs in the terminal.
 
