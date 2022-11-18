@@ -40,8 +40,6 @@ Open the given files in the user's editor at specific line and column if support
 
 @param files - Items should be in the format `foo.js:1:5` or `{file: 'foo.js', line: 1: column: 5}`.
 
-@param {boolean} [options.wait=false] - Wait until the editor is closed (default: false).
-
 @returns Promise<void> - If options.wait is true, the returned promise resolves as soon as the editor closes. Otherwise it resolves when the editor starts.
 
 @example
