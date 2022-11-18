@@ -49,7 +49,7 @@ export function getEditorInfo(files, options = {}) {
 			);
 
 			if (options.wait) {
-				editorArguments.push('-w');
+				editorArguments.push('--wait');
 			}
 
 			continue;
