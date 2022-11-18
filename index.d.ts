@@ -42,7 +42,7 @@ Open the given files in the user's editor at specific line and column if support
 
 @param {boolean} [options.wait=false] - Wait until the editor is closed (default: false).
 
-@returns Promise<void> - If options.wait is true, a promise is returned which resolves as soon as the editor closes.
+@returns Promise<void> - If options.wait is true, the returned promise resolves as soon as the editor closes. Otherwise it resolves when the editor starts.
 
 @example
 ```
