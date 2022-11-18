@@ -11,7 +11,7 @@ export interface Options {
 	readonly editor?: string;
 
 	/**
-	Whether you want to wait for the editor to quit.
+	Wait until the editor is closed.
 
 	@default false
 	*/
