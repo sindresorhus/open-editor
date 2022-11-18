@@ -36,7 +36,7 @@ export interface EditorInfo {
 }
 
 /**
-Open the given files in the user's editor at specific line and column if supported by the editor. It does not wait for the editor to start or quit  unless you specify `wait: true` in the options.
+Open the given files in the user's editor at specific line and column if supported by the editor. It does not wait for the editor to start or quit unless you specify `wait: true` in the options.
 
 @param files - Items should be in the format `foo.js:1:5` or `{file: 'foo.js', line: 1: column: 5}`.
 
