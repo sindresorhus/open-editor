@@ -14,6 +14,14 @@ export interface Options {
 	Wait until the editor is closed.
 
 	@default false
+	
+	@example
+	```
+	import openEditor from 'open-editor';
+	
+	await openEditor(['unicorn.js:5:3'], {wait: true});
+	console.log('File was closed');
+	```
 	*/
 	readonly wait?: boolean;
 }
