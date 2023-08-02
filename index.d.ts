@@ -65,9 +65,6 @@ openEditor([
 openEditor([
 	'unicorn.js:5:3',
 ]);
-
-await openEditor(['unicorn.js:5:3'], {wait: true});
-console.log('File was closed');
 ```
 */
 export default function openEditor(files: readonly PathLike[], options?: Options): Promise<void>;
