@@ -1,7 +1,7 @@
 import {expectType} from 'tsd';
 import openEditor, {getEditorInfo, EditorInfo} from './index.js';
 
-openEditor([
+void openEditor([
 	'unicorn.js:5:3',
 	{
 		file: 'readme.md',
@@ -10,7 +10,7 @@ openEditor([
 	},
 ]);
 
-openEditor(
+void openEditor(
 	[
 		'unicorn.js:5:3',
 		{

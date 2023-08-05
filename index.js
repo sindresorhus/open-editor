@@ -21,23 +21,46 @@ export function getEditorInfo(files, options = {}) {
 
 		if (['sublime', 'atom', 'vscode', 'vscodium'].includes(editor.id)) {
 			editorArguments.push(stringifyLineColumnPath(parsed));
+
+			if (options.wait) {
+				editorArguments.push('--wait');
+			}
+
 			continue;
 		}
 
 		if (['webstorm', 'intellij'].includes(editor.id)) {
 			editorArguments.push(stringifyLineColumnPath(parsed, {column: false}));
+
+			if (options.wait) {
+				editorArguments.push('--wait');
+			}
+
 			continue;
 		}
 
 		if (editor.id === 'textmate') {
-			editorArguments.push('--line', stringifyLineColumnPath(parsed, {
-				file: false,
-			}), parsed.file);
+			editorArguments.push(
+				'--line',
+				stringifyLineColumnPath(parsed, {
+					file: false,
+				}),
+				parsed.file,
+			);
+
+			if (options.wait) {
+				editorArguments.push('--wait');
+			}
+
 			continue;
 		}
 
 		if (['vim', 'neovim'].includes(editor.id)) {
-			editorArguments.push(`+call cursor(${parsed.line}, ${parsed.column})`, parsed.file);
+			editorArguments.push(
+				`+call cursor(${parsed.line}, ${parsed.column})`,
+				parsed.file,
+			);
+
 			continue;
 		}
 
@@ -51,7 +74,7 @@ export function getEditorInfo(files, options = {}) {
 	};
 }
 
-export default function openEditor(files, options) {
+export default async function openEditor(files, options) {
 	const result = getEditorInfo(files, options);
 	const stdio = result.isTerminalEditor ? 'inherit' : 'ignore';
 
@@ -71,6 +94,12 @@ export default function openEditor(files, options) {
 			open(file);
 		}
 	});
+
+	if (options.wait) {
+		return new Promise(resolve => {
+			subprocess.on('exit', resolve);
+		});
+	}
 
 	if (result.isTerminalEditor) {
 		subprocess.on('exit', process.exit);
