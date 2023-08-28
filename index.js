@@ -74,7 +74,7 @@ export function getEditorInfo(files, options = {}) {
 	};
 }
 
-export default async function openEditor(files, options) {
+export default async function openEditor(files, options = {}) {
 	const result = getEditorInfo(files, options);
 	const stdio = result.isTerminalEditor ? 'inherit' : 'ignore';
 
