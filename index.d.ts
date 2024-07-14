@@ -1,6 +1,6 @@
-import {PathLike} from 'line-column-path';
+import {type PathLike} from 'line-column-path';
 
-export interface Options {
+export type Options = {
 	/**
 	The name, command, or binary path of the editor.
 
@@ -24,9 +24,9 @@ export interface Options {
 	```
 	*/
 	readonly wait?: boolean;
-}
+};
 
-export interface EditorInfo {
+export type EditorInfo = {
 	/**
 	THe editor binary name.
 	*/
@@ -41,7 +41,7 @@ export interface EditorInfo {
 	A flag indicating whether the editor runs in the terminal.
 	*/
 	readonly isTerminalEditor: boolean;
-}
+};
 
 /**
 Open the given files in the user's editor at specific line and column if supported by the editor. It does not wait for the editor to start or quit unless you specify `wait: true` in the options.

@@ -1,5 +1,5 @@
 import process from 'node:process';
-import execa from 'execa';
+import {execa} from 'execa';
 import {getEditor, defaultEditor} from 'env-editor';
 import {parseLineColumnPath, stringifyLineColumnPath} from 'line-column-path';
 import open from 'open';
