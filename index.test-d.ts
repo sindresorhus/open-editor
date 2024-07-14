@@ -1,5 +1,5 @@
 import {expectType} from 'tsd';
-import openEditor, {getEditorInfo, EditorInfo} from './index.js';
+import openEditor, {getEditorInfo, type EditorInfo} from './index.js';
 
 void openEditor([
 	'unicorn.js:5:3',
