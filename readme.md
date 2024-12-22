@@ -6,6 +6,7 @@ Supports any editor, but only the following editors will open at a specific line
 
 - Sublime Text
 - Atom
+- Zed
 - Visual Studio Code
 - VSCodium
 - WebStorm*
