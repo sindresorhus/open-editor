@@ -19,7 +19,7 @@ export function getEditorInfo(files, options = {}) {
 	for (const file of files) {
 		const parsed = parseLineColumnPath(file);
 
-		if (['sublime', 'atom', 'vscode', 'vscodium'].includes(editor.id)) {
+		if (['sublime', 'atom', 'zed', 'vscode', 'vscodium'].includes(editor.id)) {
 			editorArguments.push(stringifyLineColumnPath(parsed));
 
 			if (options.wait) {
