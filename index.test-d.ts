@@ -30,6 +30,10 @@ expectType<EditorInfo>(
 			line: 10,
 			column: 2,
 		},
+		new URL('file://path/to/file'),
+		{
+			file: new URL('file://path/to/file'),
+		},
 	]),
 );
 
