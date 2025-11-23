@@ -22,31 +22,27 @@ void openEditor(
 	{editor: 'vi'},
 );
 
-expectType<EditorInfo>(
-	getEditorInfo([
+expectType<EditorInfo>(getEditorInfo([
+	'unicorn.js:5:3',
+	{
+		file: 'readme.md',
+		line: 10,
+		column: 2,
+	},
+	new URL('file://path/to/file'),
+	{
+		file: new URL('file://path/to/file'),
+	},
+]));
+
+expectType<EditorInfo>(getEditorInfo(
+	[
 		'unicorn.js:5:3',
 		{
 			file: 'readme.md',
 			line: 10,
 			column: 2,
 		},
-		new URL('file://path/to/file'),
-		{
-			file: new URL('file://path/to/file'),
-		},
-	]),
-);
-
-expectType<EditorInfo>(
-	getEditorInfo(
-		[
-			'unicorn.js:5:3',
-			{
-				file: 'readme.md',
-				line: 10,
-				column: 2,
-			},
-		],
-		{editor: 'vi'},
-	),
-);
+	],
+	{editor: 'vi'},
+));
