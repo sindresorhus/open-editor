@@ -1,3 +1,5 @@
+import url from 'node:url';
+import path from 'node:path';
 import test from 'ava';
 import {getEditorInfo} from './index.js';
 
@@ -5,8 +7,10 @@ const fixtureFiles = [
 	'unicorn.js:10:20',
 	'rainbow.js:43:4',
 ];
+const fixturePath = path.resolve('/foo.js');
+const fixtureUrl = url.pathToFileURL(fixturePath);
 
-test('object input', t => {
+test('files', t => {
 	t.deepEqual(
 		getEditorInfo(
 			[
@@ -28,6 +32,29 @@ test('object input', t => {
 		{
 			binary: 'subl',
 			arguments: fixtureFiles,
+			isTerminalEditor: false,
+		},
+	);
+	t.deepEqual(
+		getEditorInfo(
+			[
+				fixtureUrl,
+				{
+					file: fixtureUrl,
+					line: 43,
+					column: 4,
+				},
+			],
+			{
+				editor: 'sublime',
+			},
+		),
+		{
+			binary: 'subl',
+			arguments: [
+				`${fixturePath}:1:1`,
+				`${fixturePath}:43:4`,
+			],
 			isTerminalEditor: false,
 		},
 	);

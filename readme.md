@@ -49,7 +49,7 @@ Open the given files in the user's editor at specific line and column if support
 
 #### files
 
-Type: `Array<string | object>`
+Type: `Array<string | URL | object>`
 
 Items should be in the format `foo.js:1:5` or `{file: 'foo.js', line: 1: column: 5}`.
 
